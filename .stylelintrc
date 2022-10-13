@@ -1,13 +1,15 @@
 {
   "rules": {
-    "unit-whitelist": ["vh", "px", "deg", "em", "rem", "%", "s", "ms"],
-    "at-rule-empty-line-before": [ "always", {
-      except: [
-        "blockless-after-same-name-blockless",
-        "first-nested"
-      ],
-      ignore: ["after-comment"],
-    } ],
+    "declaration-property-unit-allowed-list": {
+      "/.*/": ["vh", "px", "deg", "em", "rem", "%", "s", "ms"]
+    },
+    "at-rule-empty-line-before": [
+      "always",
+      {
+        "except": ["blockless-after-same-name-blockless", "first-nested"],
+        "ignore": ["after-comment"]
+      }
+    ],
     "at-rule-name-case": "lower",
     "at-rule-name-space-after": "always-single-line",
     "at-rule-semicolon-newline-after": "always",
@@ -27,22 +29,22 @@
     "color-hex-case": "lower",
     "color-hex-length": "short",
     "color-no-invalid-hex": true,
-    "comment-empty-line-before": [ "always", {
-      except: ["first-nested"],
-      ignore: ["stylelint-commands"]
-    } ],
+    "comment-empty-line-before": [
+      "always",
+      {
+        "except": ["first-nested"],
+        "ignore": ["stylelint-commands"]
+      }
+    ],
     "comment-no-empty": true,
     "comment-whitespace-inside": "always",
-    "custom-property-empty-line-before": [ "always", {
-      except: [
-        "after-custom-property",
-        "first-nested"
-      ],
-      ignore: [
-        "after-comment",
-        "inside-single-line-block"
-      ],
-    } ],
+    "custom-property-empty-line-before": [
+      "always",
+      {
+        "except": ["after-custom-property", "first-nested"],
+        "ignore": ["after-comment", "inside-single-line-block"]
+      }
+    ],
     "indentation": 2,
     "declaration-no-important": true,
     "declaration-bang-space-after": "never",
@@ -96,10 +98,13 @@
     "number-no-trailing-zeros": true,
     "property-case": "lower",
     "property-no-unknown": true,
-    "rule-empty-line-before": [ "always-multi-line", {
-      except: ["first-nested"],
-      ignore: ["after-comment"]
-    } ],
+    "rule-empty-line-before": [
+      "always-multi-line",
+      {
+        "except": ["first-nested"],
+        "ignore": ["after-comment"]
+      }
+    ],
     "selector-attribute-brackets-space-inside": "never",
     "selector-attribute-operator-space-after": "never",
     "selector-attribute-operator-space-before": "never",
