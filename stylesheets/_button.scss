@@ -7,16 +7,15 @@ button,
   font-family: 'Roboto', sans-serif;
   color: white;
   cursor: pointer;
-  background: $light-teal;
+  background: #0076a8;
   border: 0;
-  border-bottom: 2px solid $dark-blue;
   border-radius: 2px;
 
   &.first {
     min-width: 80px;
-    background: $purple;
+    background: #0076a8;
     font-size: 11px;
-    border-bottom: 2px solid $light-purple;
+    border-bottom: none;
   }
 
   &:disabled {

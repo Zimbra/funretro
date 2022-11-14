@@ -6,7 +6,7 @@ header {
   padding-right: 15px;
   padding-left: 15px;
   color: white;
-  background-color: $teal;
+  background-color: #f2f2f2;
   border-bottom: 1px solid $lighter-gray;
   border-radius: 0;
   -webkit-tap-highlight-color: transparent;
@@ -19,6 +19,10 @@ header {
     font-family: "Roboto";
     font-size: 1.7em;
     line-height: 1em;
+
+    img {
+      width: 100px;
+    }
   }
 
   .header-icon {
@@ -60,6 +64,7 @@ header {
     float: none;
     margin-right: 10px;
     font-size: 14px;
+    color: black;
 
     @media (max-width: 500px) {
       display: none;

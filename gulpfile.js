@@ -1,7 +1,9 @@
 const gulp = require('gulp'),
   clean = require('gulp-clean'),
   jshint = require('gulp-jshint'),
-  Server = require('karma').Server,
+  karma = require('karma'),
+  parseConfig = karma.config.parseConfig,
+  Server = karma.Server,
   concat = require('gulp-concat'),
   gp_rename = require('gulp-rename'),
   concatCss = require('gulp-concat-css'),
@@ -11,8 +13,13 @@ const gulp = require('gulp'),
   express = require('express'),
   path = require('path'),
   watch = require('gulp-watch'),
-  autoprefixer = require('gulp-autoprefixer'),
-  gulpStylelint = require('gulp-stylelint');
+  autoprefixer = require('gulp-autoprefixer')
+  open = require('open');/*,
+  gulpStylelint = require('gulp-stylelint')*/;
+
+const openBrowser = () => {
+	open(`http://localhost:4000`);
+};
 
 const startServer = (cb) => {
   const app = express();
@@ -22,7 +29,7 @@ const startServer = (cb) => {
 
   var port = 4000;
   app.listen(port, '0.0.0.0', function () {
-	console.log('App running and listening on port', port);
+	console.log('App running on', `http://localhost:${port}`);
 	cb();
   });
 };
@@ -124,26 +131,25 @@ const lint =
 // 		}));
 
 const watchTest = (done) => {
-  return new Server(
-	{
-	  configFile: __dirname + '/karma.conf.js',
-	  singleRun: false
-	},
-	done
-  ).start();
+	var karmaConfig = parseConfig(
+		__dirname + '/karma.conf.js',
+		{
+			singleRun: false
+		}
+	);
+
+	return new Server(karmaConfig, done).start();
 };
 
 const testOnce = (done) => {
-  Server.start(
-	{
-	  configFile: __dirname + '/karma.conf.js',
-	  singleRun: true,
-	  reporters: ['mocha']
-	},
-	function (error) {
-	  done(error);
-	}
-  );
+	var karmaConfig = parseConfig(
+		__dirname + '/karma.conf.js',
+		{
+			singleRun: true
+		}
+	);
+
+	return new Server(karmaConfig, done).start();
 };
 
 const copy = gulp.parallel(
@@ -161,8 +167,8 @@ const copy = gulp.parallel(
   buildHTML
 );
 
-gulp.task('default', gulp.series(cleanDist, gulp.parallel(bundle, copy, startServer, liveReload), watchForChange));
+gulp.task('default', gulp.series(cleanDist, gulp.parallel(bundle, copy, startServer, liveReload), watchForChange, openBrowser));
 gulp.task('test', watchTest);
-gulp.task('testci', testOnce);
+gulp.task('testonce', testOnce);
 gulp.task('build', gulp.series(cleanDist, gulp.parallel(bundle, copy)));
-gulp.task('lint', gulp.series(lint, /*lintCss*/));
+gulp.task('lint', gulp.series(lint/*, lintCss*/));
