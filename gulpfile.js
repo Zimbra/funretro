@@ -91,6 +91,9 @@ const bundleVendorJS =
 	  'node_modules/jspdf/dist/jspdf.umd.min.js'
 	])
 	.pipe(concat('vendor.js'))
+	.pipe(replace('FIREBASE_API_KEY', process.env.FIREBASE_API_KEY))
+	.pipe(replace('FIREBASE_PROJECT_ID', process.env.FIREBASE_PROJECT_ID))
+	.pipe(replace('FIREBASE_DB_URL', process.env.FIREBASE_DB_URL))
 	.pipe(gulp.dest('dist'));
 
 const minifyJS =
