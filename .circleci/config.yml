@@ -1,0 +1,30 @@
+version: 2.1
+
+jobs:
+  build-and-push:
+    working_directory: ~/repo
+    docker:
+      - image: cimg/node:14.21
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install npm modules
+          command: npm install --no-audit
+
+      - run:
+          name: Build application
+          command: npm run build
+
+      - run:
+          name: Push to vercel
+          command: |
+            npx vercel --yes dist/ -t $VERCEL_TOKEN --scope zimbra
+            npx vercel alias dist-silentsakky-zimbra.vercel.app zimretro -t $VERCEL_TOKEN --scope zimbra
+
+
+workflows:
+  commit-workflow:
+    jobs:
+      - build-and-push

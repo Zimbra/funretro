@@ -13,7 +13,8 @@ const gulp = require('gulp'),
   express = require('express'),
   path = require('path'),
   watch = require('gulp-watch'),
-  autoprefixer = require('gulp-autoprefixer')
+  autoprefixer = require('gulp-autoprefixer'),
+  replace = require('gulp-replace'),
   open = require('open');/*,
   gulpStylelint = require('gulp-stylelint')*/;
 
