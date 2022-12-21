@@ -83,6 +83,10 @@
   }
 }
 
+.message-body-link {
+  color: #fff;
+}
+
 .votes {
   @include position(absolute, null 0 0 null);
   display: flex;
