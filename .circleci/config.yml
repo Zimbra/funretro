@@ -21,8 +21,11 @@ jobs:
           name: Push to vercel
           command: |
             npx vercel --yes dist/ -t $VERCEL_TOKEN --scope zimbra
-            npx vercel alias dist-silentsakky-zimbra.vercel.app zimretro -t $VERCEL_TOKEN --scope zimbra
 
+            if [[ ${CIRCLE_BRANCH} == "zimbra" ]]; then
+              # Update zimretro.vercel.app
+              npx vercel alias dist-silentsakky-zimbra.vercel.app zimretro -t $VERCEL_TOKEN --scope zimbra
+            fi
 
 workflows:
   commit-workflow:

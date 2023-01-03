@@ -126,7 +126,8 @@ angular
     };
 
     importExportService.generatePdf = function(board, messages, sortField) {
-      /* globals jsPDF */
+      const { jsPDF } = window.jspdf;
+
       var pdf = new jsPDF();
       var currentHeight = 10;
 
@@ -136,11 +137,11 @@ angular
           currentHeight = 10;
         }
 
-        pdf.setFontType('bold');
+        pdf.setFont(undefined, 'bold');
         currentHeight = currentHeight + 5;
         pdf.text(column.value, 10, currentHeight);
         currentHeight = currentHeight + 10;
-        pdf.setFontType('normal');
+        pdf.setFont(undefined, 'normal');
 
         var filteredArray = $filter('orderBy')(messages, importExportService.getSortFields(sortField));
 
